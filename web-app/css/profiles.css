@@ -406,12 +406,22 @@ editor, .toggleNext, a > apc, apnilink, a > i.fa-search {
 .main-stats .main-stats__stat {
     text-align: center;
     border: 1px solid rgba(233, 0, 74, 0.2);
+    overflow: scroll;
 }
 
 .stat__number {
-    font-size: 14px;
-    min-height: 30px;
-    max-height: 40px;
+    font-size: 12px;
+    min-height: 35px;
+    max-height: 35px;
+    margin-top: 0;
+}
+
+.stat__title {
+    min-height: 35px;
+    max-height: 35px;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px !important;
 }
 
 .main-stats__stat {
