@@ -33,7 +33,7 @@ class BiocacheService {
             file.renameTo(new File(tempDir, file.getName()));
         }
 
-        metadata.multimedia[0].identifier = "${grailsApplication.config.grails.serverURL}/opus/${opusId}/profile/${profileId}/file/${filename}"
+        metadata.multimedia[0].identifier = "${grailsApplication.config.grails.serverURL}/opus/${enc(opusId)}/profile/${enc(profileId)}/file/${enc(filename)}"
 
         // make sure the spelling of licenSe is US to match the Darwin Core standard
         if (metadata.multimedia[0].containsKey("licence")) {
@@ -51,12 +51,16 @@ class BiocacheService {
                 dataResourceId = "dr4"
             } else if (dataResourceId == "dr2172") { // nsw
                 dataResourceId = "dr5"
-            } else if (dataResourceId == "dr2172") { // olkola
+            } else if (dataResourceId == "dr2341") { // olkola
                 dataResourceId = "dr7"
             }
         }
 
         webService.doPost("${grailsApplication.config.image.upload.url}${dataResourceId}?apiKey=${grailsApplication.config.image.upload.apiKey}", metadata)
+    }
+
+    private static enc(String str) {
+        URLEncoder.encode(str, "utf-8")
     }
 
     def lookupSpecimen(String specimenId) {
