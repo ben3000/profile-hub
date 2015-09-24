@@ -474,11 +474,11 @@ class ProfileController extends BaseController {
     }
 
     private getGlossaryUrl(opus) {
-        opus?.glossaryUuid ? "${request.contextPath}/opus/${opus.uuid}/glossary" : ""
+        opus?.glossaryUuid ? "${request.contextPath}/opus/${opus.shortName ?: opus.uuid}/glossary" : ""
     }
 
     private getAboutUrl(opus) {
-        opus.hasAboutPage ? "${request.contextPath}/opus/${opus.shortName ? opus.shortName : opus.uuid}/about" : ""
+        opus.hasAboutPage ? "${request.contextPath}/opus/${opus.shortName ?: opus.uuid}/about" : ""
     }
 
     def attributesPanel = {

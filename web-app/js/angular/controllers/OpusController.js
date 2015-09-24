@@ -119,7 +119,9 @@ profileEditor.controller('OpusController', function (profileService, util, messa
                 if (!self.opus.uuid) {
                     self.opusId = data.uuid;
                     self.opus = data;
-                    util.redirect(util.contextRoot() + "/opus/" + self.opus.uuid + "/update");
+                    util.redirect(util.contextRoot() + "/opus/"
+                        + (self.opus.shortName ? self.opus.shortName : self.opus.uuid)
+                        + "/update");
                 }
             },
             function () {

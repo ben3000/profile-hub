@@ -115,7 +115,8 @@ profileEditor.controller('ProfileController', function (profileService, util, me
         deleteConf.then(function() {
             var promise = profileService.deleteProfile(self.opus.uuid, self.profileId);
             promise.then(function() {
-                    util.redirect(util.contextRoot() + "/opus/" + self.opus.uuid);
+                    util.redirect(util.contextRoot() + "/opus/"
+                            + (self.opus.shortName ? self.opus.shortName : self.opus.uuid));
                 },
                 function() {
                     messageService.alert("An error occurred while deleting the profile.");
@@ -138,7 +139,9 @@ profileEditor.controller('ProfileController', function (profileService, util, me
 
         popup.result.then(function (profile) {
             messageService.success("Profile for " + profile.scientificName + " has been successfully created.");
-            util.redirect(util.contextRoot() + "/opus/" + self.opusId + "/profile/" + profile.scientificName + "/update");
+            util.redirect(util.contextRoot() + "/opus/"
+                + (self.opus.shortName ? self.opus.shortName : self.opus.uuid)
+                + "/profile/" + profile.scientificName + "/update");
         });
     };
 
@@ -314,7 +317,9 @@ profileEditor.controller('ProfileController', function (profileService, util, me
 
                 messageService.success("The profile name has been successfully updated.");
 
-                util.redirect(util.contextRoot() + "/opus/" + self.opusId + "/profile/" + profile.scientificName + "/update");
+                util.redirect(util.contextRoot() + "/opus/"
+                    + (self.opus.shortName ? self.opus.shortName : self.opus.uuid)
+                    + "/profile/" + profile.scientificName + "/update");
             }, function() {
                 messageService.error("An error occurred while updating the profile name.");
             });
@@ -332,7 +337,9 @@ profileEditor.controller('ProfileController', function (profileService, util, me
 
                 messageService.success("The profile name has been successfully updated.");
 
-                util.redirect(util.contextRoot() + "/opus/" + self.opusId + "/profile/" + profile.scientificName + "/update");
+                util.redirect(util.contextRoot() + "/opus/"
+                    + (self.opus.shortName ? self.opus.shortName : self.opus.uuid)
+                    + "/profile/" + self.profile.scientificName + "/update");
             }, function() {
                 messageService.error("An error occurred while updating the profile name.");
             });
@@ -401,7 +408,9 @@ profileEditor.controller('ProfileController', function (profileService, util, me
             var promise = profileService.archiveProfile(self.opusId, self.profileId, archiveComment);
 
             promise.then(function() {
-                util.redirect(util.contextRoot() + "/opus/" + (self.opus.shortName ? self.opus.shortName : self.opus.uuid) + "/profile/" + self.profile.uuid);
+                util.redirect(util.contextRoot() + "/opus/"
+                    + (self.opus.shortName ? self.opus.shortName : self.opus.uuid)
+                    + "/profile/" + self.profile.scientificName);
                 messageService.success("Your profile has been successfully archived.")
             }, function() {
                 messageService.alert("An error occurred while archiving the profile.");
@@ -446,7 +455,9 @@ profileEditor.controller('ProfileController', function (profileService, util, me
         var restore = profileService.restoreArchivedProfile(self.opusId, self.profile.uuid, newName ? newName : null);
 
         restore.then(function(updatedProfile) {
-            util.redirect(util.contextRoot() + "/opus/" + (self.opus.shortName ? self.opus.shortName : self.opus.uuid) + "/profile/" + updatedProfile.scientificName);
+            util.redirect(util.contextRoot() + "/opus/"
+                + (self.opus.shortName ? self.opus.shortName : self.opus.uuid)
+                + "/profile/" + updatedProfile.scientificName);
         }, function() {
             messageService.alert("An error has occurred while restoring your profile.");
         });

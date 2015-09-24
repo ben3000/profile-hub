@@ -89,7 +89,8 @@ profileEditor.controller('SearchController', function (profileService, util, mes
 
     self.selectSingleResult = function() {
         if (self.profiles.length == 1) {
-            util.redirect(util.contextRoot() + "/opus/" + self.opusId + "/profile/" + self.profiles[0].scientificName);
+            util.redirect(util.contextRoot() + "/opus/" + self.opusId + "/profile/"
+                + self.profiles[0].scientificName);
         }
     }
 });
