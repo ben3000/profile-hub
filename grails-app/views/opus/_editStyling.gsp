@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label>Short Name</label>
                     <input type="text" class="form-control" name="shortName" ng-model="opusCtrl.opus.shortName"/> <br/>
-                    <span class="small">The URL for your collection will be http://${request.serverName}/opus/{{opusCtrl.opus.shortName ? opusCtrl.opus.shortName : opusCtrl.opus.uuid | lowercase}}</span>
+                    <span class="small">The URL for your collection will be http://${request.serverName}/opus/{{opusCtrl.opus.shortName ? opusCtrl.opus.shortName : opusCtrl.opus.uuid | lowercase}}. Note that some of the collection’s statistics will be reset once you change this value.</span>
                 </div>
 
                 <div class="form-group">
